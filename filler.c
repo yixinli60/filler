@@ -11,38 +11,26 @@
 /* ************************************************************************** */
 
 #include "includes/filler.h"
-#include "src/libft/libft.h"
 
-int	main()
+int	main(void)
 {
 	t_info info_stru;
 	char	*buf;
-	char	**string;
-	int		row;
-	int		col;
-	int		p;
 
 	ft_memset(&info_stru, 0, sizeof(info_stru));
 	while (get_next_line(0, &buf) > 0)
 	{
-		if (ft_strnequ(buf, "$$$ exec ", 9))
-		{
-			p = ft_atoi(&buf[10]);
-			info_stru.plr = p;
-			dprintf(2, "|player is %d|\n", info_stru.plr);
-		}
-		if (ft_strnequ(buf, "Plateau ", 8))
-		{
-			string = ft_strsplit(buf, ' ');
-			row = ft_atoi(string[1]);
-			col = ft_atoi(string[2]);
-			dprintf(2, "|row is %d|\n", row);
-			dprintf(2, "|col is %d|\n", col);
-		}
-		//ft_putstr_fd(buf, 2);
-		//dprintf(2, "\n");
-		//return (0);
+		//dprintf(2, "||||%s||||\n", buf);
+		if (ft_strnequ(buf, "$", 1))
+			info_stru.plr = buf[10];
+		else if (ft_strnequ(buf, "Pl", 2))
+			get_map_info(buf, &info_stru);
+		else if (ft_strnequ(buf, "    ", 4))
+			get_map(buf, &info_stru);
+		else if (ft_strnequ(buf, "Pi", 2))
+			get_piece_info(buf, &info_stru);
+		else
+			return (0);
 	}
-	printf("8 2");
 	return (0);
 }

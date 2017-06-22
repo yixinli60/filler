@@ -17,7 +17,8 @@ CFLAGS = -Wall -Werror -Wextra
 LIBFT_DIR = ./src/libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
-FILENAMES = filler.c
+FILENAMES = filler.c \
+	get_info.c
 
 OBJECTS = $(FILENAMES:.c=.o)
 

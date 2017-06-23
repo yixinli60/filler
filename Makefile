@@ -18,7 +18,8 @@ LIBFT_DIR = ./src/libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
 FILENAMES = filler.c \
-	get_info.c
+	get_info.c \
+	shift_piece.c
 
 OBJECTS = $(FILENAMES:.c=.o)
 

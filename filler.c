@@ -14,13 +14,12 @@
 
 int	main(void)
 {
-	t_info info_stru;
+	t_info	info_stru;
 	char	*buf;
 
 	ft_memset(&info_stru, 0, sizeof(info_stru));
 	while (get_next_line(0, &buf) > 0)
 	{
-		//dprintf(2, "||||%s||||\n", buf);
 		if (ft_strnequ(buf, "$", 1))
 			info_stru.plr = buf[10];
 		else if (ft_strnequ(buf, "Pl", 2))

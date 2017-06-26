@@ -24,15 +24,23 @@ typedef struct	s_info
 	int		col;
 	int		piece_row;
 	int		piece_col;
+	char	**map;
+	char	**piece;
+	int		up;
+	int		left;
+	int		final_row;
+	int		final_col;
 }				t_info;
 
 int				get_map_info(char *buf, t_info *info_stru);
-int				get_map(char *buf, t_info *info_stru);
+int				save_map_to_struc(char *buf, t_info *info_stru);
 int				get_piece_info(char *buf, t_info *info_stru);
 
 int				shift_up(char **piece, t_info *info_stru);
 int				shift_left(char **piece, t_info *info_stru, int up);
 int				shift_get1st(char **piece, t_info *info_stru, int up);
 char			**shift_all(char **piece, t_info *info_stru);
+
+int				parse_map(t_info *info_stru);
 
 #endif

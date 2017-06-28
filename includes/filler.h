@@ -20,8 +20,8 @@
 typedef struct	s_info
 {
 	char	plr;
-	int		row;
-	int		col;
+	int		map_row;
+	int		map_col;
 	int		piece_row;
 	int		piece_col;
 	char	**map;
@@ -30,6 +30,8 @@ typedef struct	s_info
 	int		left;
 	int		final_row;
 	int		final_col;
+	int		first_row;
+	int		first_col;
 }				t_info;
 
 int				get_map_info(char *buf, t_info *info_stru);
@@ -42,5 +44,13 @@ int				shift_get1st(char **piece, t_info *info_stru, int up);
 char			**shift_all(char **piece, t_info *info_stru);
 
 int				parse_map(t_info *info_stru);
+
+int				plr_O(t_info *info_stru);
+int				plr_X(t_info *info_stru);
+
+
+int				loop_piece(t_info *info_stru, int t_row, int t_col);
+
+int				print_coor(t_info *info_stru);
 
 #endif

@@ -29,10 +29,7 @@ int	main(void)
 		else if (ft_strnequ(buf, "Pi", 2))
 		{
 			get_piece_info(buf, &info_stru);
-			//dprintf(2, "//%d %d//\n", info_stru.final_row, info_stru.final_col);
-			//printf("%d %d\n", info_stru.final_row, info_stru.final_col);
-			printf("8 2\n");
-
+			print_coor(&info_stru);
 		}
 		else
 			return (0);

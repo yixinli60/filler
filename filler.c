@@ -14,22 +14,23 @@
 
 int	main(void)
 {
-	t_info	info_stru;
+	t_info	i_stu;
 	char	*buf;
 
-	ft_memset(&info_stru, 0, sizeof(info_stru));
+	ft_memset(&i_stu, 0, sizeof(i_stu));
 	while (get_next_line(0, &buf) > 0)
 	{
 		if (ft_strnequ(buf, "$", 1))
-			info_stru.plr = buf[10];
+			i_stu.plr = buf[10];
 		else if (ft_strnequ(buf, "Pl", 2))
-			get_map_info(buf, &info_stru);
+			get_map_info(buf, &i_stu);
 		else if (ft_strnequ(buf, "    ", 4))
-			save_map_to_struc(buf, &info_stru);
+			save_map_to_struc(buf, &i_stu);
 		else if (ft_strnequ(buf, "Pi", 2))
 		{
-			get_piece_info(buf, &info_stru);
-			print_coor(&info_stru);
+			get_piece_info(buf, &i_stu);
+			heat_omap(&i_stu);
+			print_coor(&i_stu);
 		}
 		else
 			return (0);

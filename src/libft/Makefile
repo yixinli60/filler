@@ -86,7 +86,17 @@ OBJECTS = ft_memset.o \
 	ft_itoa_base.o \
 	ft_str_toupper.o \
 	ft_wstrlen.o \
-	get_next_line.o
+	get_next_line.o \
+	parsing.o \
+	printing.o \
+	parse_dioux.o \
+	ft_printf.o \
+	ft_pad_str.o \
+	ft_handle_str.o \
+	ft_handle_hex.o \
+	ft_conv_pct.o \
+	ft_conv_cps.o \
+	ft_conv_dioux.o
 
 all: $(NAME)
 

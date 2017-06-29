@@ -20,7 +20,9 @@ LIBFT = $(LIBFT_DIR)/libft.a
 FILENAMES = filler.c \
 	get_info.c \
 	shift_piece.c \
-	print_coor.c
+	print_coor.c \
+	loop_pieces.c \
+	heat_map.c
 
 OBJECTS = $(FILENAMES:.c=.o)
 

@@ -12,7 +12,7 @@
 
 #include "includes/filler.h"
 
-int		shift_get1st(char **piece, t_info *info_stru, int up)
+int		shift_get1st(char **piece, t_info *i_stu, int up)
 {
 	int	i;
 	int	j;
@@ -21,13 +21,13 @@ int		shift_get1st(char **piece, t_info *info_stru, int up)
 	i = up;
 	j = 0;
 	first = 0;
-	while (j < info_stru->piece_col)
+	while (j < i_stu->xy.p_col)
 	{
 		if (piece[i][j] == '*')
 		{
 			first = j;
-			info_stru->first_row = i;
-			info_stru->first_col = j;
+			i_stu->xy.f_row = i;
+			i_stu->xy.f_col = j;
 			break ;
 		}
 		j++;
@@ -35,51 +35,51 @@ int		shift_get1st(char **piece, t_info *info_stru, int up)
 	return (first);
 }
 
-int		shift_left(char **piece, t_info *info_stru, int up)
+int		shift_left(char **piece, t_info *i_stu, int up)
 {
 	int	i;
 	int	j;
 
 	i = up + 1;
-	info_stru->left = shift_get1st(piece, info_stru, up);
-	while (i < info_stru->piece_row)
+	i_stu->xy.left = shift_get1st(piece, i_stu, up);
+	while (i < i_stu->xy.p_row)
 	{
 		j = 0;
-		while (j < info_stru->piece_col)
+		while (j < i_stu->xy.p_col)
 		{
 			if (piece[i][j] == '*')
 			{
-				if (info_stru->left > j)
-					info_stru->left = j;
+				if (i_stu->xy.left > j)
+					i_stu->xy.left = j;
 			}
 			j++;
 		}
 		i++;
 	}
-	return (info_stru->left);
+	return (i_stu->xy.left);
 }
 
-int		shift_up(char **piece, t_info *info_stru)
+int		shift_up(char **piece, t_info *i_stu)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	while (i < info_stru->piece_row)
+	while (i < i_stu->xy.p_row)
 	{
 		j = 0;
-		while (j < info_stru->piece_col)
+		while (j < i_stu->xy.p_col)
 		{
 			if (piece[i][j] == '*')
-				return (i);
+				return (i_stu->xy.up = i);
 			j++;
 		}
 		i++;
 	}
-	return (0);
+	return (i_stu->xy.up = i);
 }
 
-char	**shift_all(char **piece, t_info *info_stru)
+char	**shift_all(char **piece, t_info *i_stu)
 {
 	int	up;
 	int	left;
@@ -87,14 +87,14 @@ char	**shift_all(char **piece, t_info *info_stru)
 	int col;
 
 	row = 0;
-	up = shift_up(piece, info_stru);
-	left = shift_left(piece, info_stru, up);
+	up = shift_up(piece, i_stu);
+	left = shift_left(piece, i_stu, up);
 	if (up == 0 && left == 0)
-		return (piece);
-	while (row < info_stru->piece_row)
+		return (get_piece_size(piece, i_stu));
+	while (row < i_stu->xy.p_row)
 	{
 		col = 0;
-		while (col < info_stru->piece_col)
+		while (col < i_stu->xy.p_col)
 		{
 			if (piece[row][col] == '*')
 			{
@@ -105,5 +105,35 @@ char	**shift_all(char **piece, t_info *info_stru)
 		}
 		row++;
 	}
+	return (get_piece_size(piece, i_stu));
+}
+
+char	**get_piece_size(char **piece, t_info *i_stu)
+{
+	int	row;
+	int	col;
+
+	i_stu->xy.p_x = 0;
+	i_stu->xy.p_y = 0;
+	row = i_stu->xy.p_row - 1;
+	while (row >= 0)
+	{
+		col = 0;
+		while (col < i_stu->xy.p_col)
+		{
+			if (piece[row][col] == '*')
+			{
+				if (row > i_stu->xy.p_x)
+					i_stu->xy.p_x = row;
+				if (col > i_stu->xy.p_y)
+					i_stu->xy.p_y = col;
+			}
+			col++;
+		}
+		row--;
+	}
+	i_stu->xy.p_x = i_stu->xy.p_x + 1;
+	i_stu->xy.p_y = i_stu->xy.p_y + 1;
+	//dprintf(2, "\nactual piece size %d %d\n\n", i_stu->xy.p_x, i_stu->xy.p_y);
 	return (piece);
 }

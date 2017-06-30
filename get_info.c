@@ -38,6 +38,14 @@ int	save_map_to_struc(char *buf, t_info *i_stu)
 		ft_strtoupper(i_stu->map[i]);
 		i++;
 	}
+/*
+	i = 0;
+	while (i < i_stu->map_row) //prints piece row by row
+	{
+		printf("%s\n", i_stu->map[i]);
+		i++;
+	}
+*/
 	return (0);
 }
 
@@ -65,7 +73,7 @@ int	get_piece_info(char *buf, t_info *i_stu)
 	i = 0;
 	while (i < i_stu->xy.p_row) //prints piece row by row
 	{
-		dprintf(2, "||%s||\n", i_stu->piece[i]);
+		dprintf(2, "%s\n", i_stu->piece[i]);
 		i++;
 	}
 */
@@ -75,9 +83,14 @@ int	get_piece_info(char *buf, t_info *i_stu)
 
 int	parse_map(t_info *i_stu)
 {
-	if (i_stu->plr == '1')
+	if (i_stu->plr == '1' /*&& (find_x(i_stu) < find_o(i_stu))*/)
 		plr_o(i_stu);
-	else
+	//else if (i_stu->plr == '1' && (find_x(i_stu) > find_o(i_stu)))
+		//dprintf(2, "|%d %d|\n", find_x(i_stu), find_o(i_stu));
+	//	plr_o(i_stu);
+	else if (i_stu->plr == '2' /*&& (find_x(i_stu) < find_o(i_stu))*/)
 		plr_x(i_stu);
+	//else if (i_stu->plr == '2' && (find_x(i_stu) > find_o(i_stu)))
+	//	plr_x(i_stu);
 	return (0);
 }

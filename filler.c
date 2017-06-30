@@ -29,7 +29,7 @@ int	main(void)
 		else if (ft_strnequ(buf, "Pi", 2))
 		{
 			get_piece_info(buf, &i_stu);
-			heat_omap(&i_stu);
+			//heat_omap(&i_stu);
 			print_coor(&i_stu);
 		}
 		else

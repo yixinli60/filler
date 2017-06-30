@@ -49,3 +49,43 @@ int heat_omap(t_info *i_stu)
   dprintf(2, "\n");
 	return (0);
 }
+
+int find_x(t_info *i_stu)
+{
+  int row;
+  int col;
+
+  row = 0;
+	while (row < i_stu->map_row)
+  {
+    col = 0;
+    while (col < i_stu->map_col)
+    {
+      if (i_stu->map[row][col] == 'X')
+        return (row);
+        col++;
+    }
+  	row++;
+  }
+  return (0);
+}
+
+int find_o(t_info *i_stu)
+{
+  int row;
+  int col;
+
+  row = 0;
+	while (row < i_stu->map_row)
+  {
+    col = 0;
+    while (col < i_stu->map_col)
+    {
+      if (i_stu->map[row][col] == 'O')
+        return (row);
+        col++;
+    }
+  	row++;
+  }
+  return (0);
+}

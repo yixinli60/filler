@@ -18,6 +18,7 @@ int	plr_o(t_info *i_stu)
 	int	col;
 
 	row = 0;
+	//dprintf(2, "%d %d\n", i_stu->xy.p_x, i_stu->xy.p_y);
 	while (row < (i_stu->map_row - (i_stu->xy.p_x - 1)))
 	{
 		col = 0;
@@ -33,8 +34,38 @@ int	plr_o(t_info *i_stu)
 		}
 		row++;
 	}
+	i_stu->final_row = 0;
+	i_stu->final_col = 0;
 	return (0);
 }
+
+int	plr_o_bottom(t_info *i_stu)
+{
+	int	row;
+	int	col;
+
+	row = i_stu->map_row - i_stu->xy.p_x;
+	//dprintf(2, "%d %d\n", i_stu->xy.p_x, i_stu->xy.p_y);
+	while (row > 0)
+	{
+		col = 0;
+		while (col < (i_stu->map_col - (i_stu->xy.p_y - 1)))
+		{
+			if (loop_opiece(i_stu, row, col) == 1)
+			{
+				i_stu->final_row = row - i_stu->xy.up;
+				i_stu->final_col = col - i_stu->xy.left;
+				return (0);
+			}
+			col++;
+		}
+		row--;
+	}
+	i_stu->final_row = 0;
+	i_stu->final_col = 0;
+	return (0);
+}
+
 
 int	plr_x(t_info *i_stu)
 {
@@ -57,6 +88,35 @@ int	plr_x(t_info *i_stu)
 		}
 		row++;
 	}
+	i_stu->final_row = 0;
+	i_stu->final_col = 0;
+	return (0);
+}
+
+int	plr_x_bottom(t_info *i_stu)
+{
+	int	row;
+	int	col;
+
+	row = i_stu->map_row - i_stu->xy.p_x;
+	//dprintf(2, "%d %d\n", i_stu->xy.p_x, i_stu->xy.p_y);
+	while (row > 0)
+	{
+		col = 0;
+		while (col < (i_stu->map_col - (i_stu->xy.p_y - 1)))
+		{
+			if (loop_opiece(i_stu, row, col) == 1)
+			{
+				i_stu->final_row = row - i_stu->xy.up;
+				i_stu->final_col = col - i_stu->xy.left;
+				return (0);
+			}
+			col++;
+		}
+		row--;
+	}
+	i_stu->final_row = 0;
+	i_stu->final_col = 0;
 	return (0);
 }
 

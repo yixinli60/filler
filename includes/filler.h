@@ -18,7 +18,6 @@
 # include <stdlib.h>
 # include <stdio.h>
 
-
 typedef struct s_coor
 {
 	int	f_row;
@@ -55,11 +54,18 @@ char			**shift_all(char **piece, t_info *i_stu);
 
 int				parse_map(t_info *i_stu);
 int				plr_o(t_info *i_stu);
+int				plr_o_bottom(t_info *i_stu);
+
 int				plr_x(t_info *i_stu);
+int				plr_x_bottom(t_info *i_stu);
+
 int				loop_opiece(t_info *i_stu, int t_row, int t_col);
 int				loop_xpiece(t_info *i_stu, int t_row, int t_col);
 
 int				heat_omap(t_info *i_stu);
 int				print_coor(t_info *i_stu);
+
+int				find_x(t_info *i_stu);
+int				find_o(t_info *i_stu);
 
 #endif

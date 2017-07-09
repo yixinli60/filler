@@ -20,14 +20,14 @@
 
 typedef struct s_coor
 {
-	int	f_row;
-	int	f_col;
 	int	p_row;
 	int	p_col;
 	int	up;
 	int	left;
 	int	p_x;
 	int	p_y;
+	int enemy_x;
+	int enemy_y;
 }				t_coor;
 
 typedef struct	s_info
@@ -36,9 +36,10 @@ typedef struct	s_info
 	int		map_row;
 	int		map_col;
 	char	**map;
+	char	**piece;
 	int		final_row;
 	int		final_col;
-	char	**piece;
+	int		dist;
 	t_coor xy;
 }				t_info;
 
@@ -65,7 +66,9 @@ int				loop_xpiece(t_info *i_stu, int t_row, int t_col);
 int				heat_omap(t_info *i_stu);
 int				print_coor(t_info *i_stu);
 
-int				find_x(t_info *i_stu);
-int				find_o(t_info *i_stu);
+int				find_enemy(t_info *i_stu, char enemy, int x, int y);
+int				free_stuff(t_info *i_stu);
+
+int				check_dist(t_info *i_stu, int row, int col);
 
 #endif

@@ -18,27 +18,22 @@ int	plr_o(t_info *i_stu)
 	int	col;
 
 	row = 0;
-	//dprintf(2, "%d %d\n", i_stu->xy.p_x, i_stu->xy.p_y);
+
+	//dprintf(2, "enemy is %d\n", enemy_r);
+	//dprintf(2, "her %d %d\n", i_stu->xy.p_x, i_stu->xy.p_y);
 	while (row < (i_stu->map_row - (i_stu->xy.p_x - 1)))
 	{
 		col = 0;
 		while (col < (i_stu->map_col - (i_stu->xy.p_y - 1)))
 		{
-			if (loop_opiece(i_stu, row, col) == 1)
-			{
-				i_stu->final_row = row - i_stu->xy.up;
-				i_stu->final_col = col - i_stu->xy.left;
-				return (0);
-			}
+			check_dist(i_stu, row, col);
 			col++;
 		}
 		row++;
 	}
-	i_stu->final_row = 0;
-	i_stu->final_col = 0;
 	return (0);
 }
-
+/*
 int	plr_o_bottom(t_info *i_stu)
 {
 	int	row;
@@ -65,7 +60,7 @@ int	plr_o_bottom(t_info *i_stu)
 	i_stu->final_col = 0;
 	return (0);
 }
-
+*/
 
 int	plr_x(t_info *i_stu)
 {
@@ -92,7 +87,7 @@ int	plr_x(t_info *i_stu)
 	i_stu->final_col = 0;
 	return (0);
 }
-
+/*
 int	plr_x_bottom(t_info *i_stu)
 {
 	int	row;
@@ -109,17 +104,17 @@ int	plr_x_bottom(t_info *i_stu)
 			{
 				i_stu->final_row = row - i_stu->xy.up;
 				i_stu->final_col = col - i_stu->xy.left;
-				return (0);
+				//return (0);
 			}
 			col++;
 		}
 		row--;
 	}
-	i_stu->final_row = 0;
-	i_stu->final_col = 0;
+	//i_stu->final_row = 0;
+	//i_stu->final_col = 0;
 	return (0);
 }
-
+*/
 int	loop_opiece(t_info *i_stu, int t_r, int t_c)
 {
 	int	r;
@@ -130,6 +125,7 @@ int	loop_opiece(t_info *i_stu, int t_r, int t_c)
 	tp_c = t_c;
 	overlap = 0;
 	r = 0;
+	//dprintf(2, "%d %d\n", i_stu->xy.p_x, i_stu->xy.p_y);
 	while (r < i_stu->xy.p_x)
 	{
 		tp_c = t_c;
@@ -176,4 +172,44 @@ int	loop_xpiece(t_info *i_stu, int t_r, int t_c)
 		r++;
 	}
 	return (overlap);
+}
+
+int	check_dist(t_info *i_stu, int row, int col)
+{
+	int dist = 0;
+	if (loop_opiece(i_stu, row, col) == 1 && i_stu->dist == -1)
+	{
+		i_stu->dist = ft_absval(i_stu->xy.enemy_x - row) + ft_absval(i_stu->xy.enemy_y - col);
+		//dprintf(2, "enemy %d %d\n", i_stu->xy.enemy_x, i_stu->xy.enemy_y);
+		//dprintf(2, "row col %d %d\n", row, col);
+		dprintf(2, "get first dist %d\n", i_stu->dist);
+		i_stu->final_row = row - i_stu->xy.up;
+		i_stu->final_col = col - i_stu->xy.left;
+		dprintf(2, "initial row %d\n", i_stu->final_row);
+		dprintf(2, "initial col %d\n\n", i_stu->final_col);
+	}
+	else if (loop_opiece(i_stu, row, col) == 1 && i_stu->dist != -1)
+	{
+		dist = ft_absval(i_stu->xy.enemy_x - row) + ft_absval(i_stu->xy.enemy_y - col);
+		dprintf(2, "old i_stu dist %d\n", i_stu->dist);
+		dprintf(2, "new dist %d\n", dist);
+		if (i_stu->dist > dist)
+		{
+			i_stu->dist = dist;
+			i_stu->final_row = row - i_stu->xy.up;
+			i_stu->final_col = col - i_stu->xy.left;
+			dprintf(2, "new dist %d\n", i_stu->dist);
+			dprintf(2, "new row %d\n", i_stu->final_row);
+			dprintf(2, "new col %d\n\n", i_stu->final_col);
+		}
+		else
+		{
+			i_stu->final_row = row - i_stu->xy.up;
+			i_stu->final_col = col - i_stu->xy.left;
+			dprintf(2, "when i_stu->dist < dist row %d\n", i_stu->final_row);
+			dprintf(2, "when i_stu->dist < dist col %d\n\n", i_stu->final_col);
+			i_stu->dist = -1;
+		}
+	}
+	return (0);
 }

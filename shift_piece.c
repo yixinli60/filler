@@ -26,8 +26,6 @@ int		shift_get1st(char **piece, t_info *i_stu, int up)
 		if (piece[i][j] == '*')
 		{
 			first = j;
-			i_stu->xy.f_row = i;
-			i_stu->xy.f_col = j;
 			break ;
 		}
 		j++;

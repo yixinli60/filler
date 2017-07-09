@@ -17,7 +17,7 @@ int	main(void)
 	t_info	i_stu;
 	char	*buf;
 
-	ft_memset(&i_stu, 0, sizeof(i_stu));
+	ft_memset(&i_stu, -1, sizeof(i_stu));
 	while (get_next_line(0, &buf) > 0)
 	{
 		if (ft_strnequ(buf, "$", 1))
@@ -28,9 +28,10 @@ int	main(void)
 			save_map_to_struc(buf, &i_stu);
 		else if (ft_strnequ(buf, "Pi", 2))
 		{
+			heat_omap(&i_stu);
 			get_piece_info(buf, &i_stu);
-			//heat_omap(&i_stu);
 			print_coor(&i_stu);
+			free_stuff(&i_stu);
 		}
 		else
 			return (0);

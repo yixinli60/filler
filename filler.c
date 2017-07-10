@@ -21,14 +21,15 @@ int	main(void)
 	while (get_next_line(0, &buf) > 0)
 	{
 		if (ft_strnequ(buf, "$", 1))
-			i_stu.plr = buf[10];
+			get_plr(buf, &i_stu);
 		else if (ft_strnequ(buf, "Pl", 2))
 			get_map_info(buf, &i_stu);
 		else if (ft_strnequ(buf, "    ", 4))
 			save_map_to_struc(buf, &i_stu);
 		else if (ft_strnequ(buf, "Pi", 2))
 		{
-			heat_omap(&i_stu);
+			clean_map(&i_stu);
+			heat_map(&i_stu);
 			get_piece_info(buf, &i_stu);
 			print_coor(&i_stu);
 			free_stuff(&i_stu);

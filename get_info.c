@@ -12,6 +12,22 @@
 
 #include "includes/filler.h"
 
+
+int	get_plr(char *buf, t_info *i_stu)
+{
+	if (buf[10] == '1')
+	{
+		i_stu->plr = 'O';
+		i_stu->emy = 'X';
+	}
+	else
+	{
+		i_stu->plr = 'X';
+		i_stu->emy = 'O';
+	}
+	return (0);
+}
+
 int	get_map_info(char *buf, t_info *i_stu)
 {
 	char	**string;
@@ -68,24 +84,15 @@ int	get_piece_info(char *buf, t_info *i_stu)
 		i_stu->piece[i][i_stu->xy.p_col] = '\0';
 		i++;
 	}
-///*
+
 	i = 0;
 	while (i < i_stu->xy.p_row) //prints piece row by row
 	{
 		dprintf(2, "%s\n", i_stu->piece[i]);
 		i++;
 	}
-//*/
-	shift_all(i_stu->piece, i_stu);
-	parse_map(i_stu);
-	return (0);
-}
 
-int	parse_map(t_info *i_stu)
-{
-	if (i_stu->plr == '1')
-		plr_o(i_stu);
-	else if (i_stu->plr == '2')
-		plr_x(i_stu);
+	shift_all(i_stu->piece, i_stu);
+	plr_o(i_stu);
 	return (0);
 }

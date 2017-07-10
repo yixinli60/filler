@@ -33,6 +33,7 @@ typedef struct s_coor
 typedef struct	s_info
 {
 	char	plr;
+	char	emy;
 	int		map_row;
 	int		map_col;
 	char	**map;
@@ -40,30 +41,34 @@ typedef struct	s_info
 	int		final_row;
 	int		final_col;
 	int		dist;
+	int		big;
 	t_coor xy;
 }				t_info;
 
+int				get_plr(char *buf, t_info *i_stu);
 int				get_map_info(char *buf, t_info *i_stu);
 int				save_map_to_struc(char *buf, t_info *i_stu);
 int				get_piece_info(char *buf, t_info *i_stu);
+
+int				shift_get1st(char **piece, t_info *i_stu, int up);
+int				shift_left(char **piece, t_info *i_stu, int up);
+int				shift_up(char **piece, t_info *i_stu);
+char			**shift_all(char **piece, t_info *i_stu);
 char			**get_piece_size(char **piece, t_info *i_stu);
 
-int				shift_up(char **piece, t_info *i_stu);
-int				shift_left(char **piece, t_info *i_stu, int up);
-int				shift_get1st(char **piece, t_info *i_stu, int up);
-char			**shift_all(char **piece, t_info *i_stu);
-
-int				parse_map(t_info *i_stu);
 int				plr_o(t_info *i_stu);
 int				plr_o_bottom(t_info *i_stu);
 
 int				plr_x(t_info *i_stu);
 int				plr_x_bottom(t_info *i_stu);
 
-int				loop_opiece(t_info *i_stu, int t_row, int t_col);
-int				loop_xpiece(t_info *i_stu, int t_row, int t_col);
+int				loop_piece(t_info *i_stu, int t_row, int t_col);
 
-int				heat_omap(t_info *i_stu);
+int				clean_map(t_info *i_stu);
+int				heat_map(t_info *i_stu);
+int				heat_map2(t_info *i_stu);
+int				heat_map3(t_info *i_stu);
+
 int				print_coor(t_info *i_stu);
 
 int				find_enemy(t_info *i_stu, char enemy, int x, int y);

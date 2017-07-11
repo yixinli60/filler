@@ -26,8 +26,6 @@ typedef struct s_coor
 	int	left;
 	int	p_x;
 	int	p_y;
-	int enemy_x;
-	int enemy_y;
 }				t_coor;
 
 typedef struct	s_info
@@ -40,7 +38,7 @@ typedef struct	s_info
 	char	**piece;
 	int		final_row;
 	int		final_col;
-	int		dist;
+	int		sum;
 	int		big;
 	t_coor xy;
 }				t_info;
@@ -56,24 +54,14 @@ int				shift_up(char **piece, t_info *i_stu);
 char			**shift_all(char **piece, t_info *i_stu);
 char			**get_piece_size(char **piece, t_info *i_stu);
 
-int				plr_o(t_info *i_stu);
-int				plr_o_bottom(t_info *i_stu);
-
-int				plr_x(t_info *i_stu);
-int				plr_x_bottom(t_info *i_stu);
-
+int				loop_map(t_info *i_stu);
 int				loop_piece(t_info *i_stu, int t_row, int t_col);
 
 int				clean_map(t_info *i_stu);
 int				heat_map(t_info *i_stu);
-int				heat_map2(t_info *i_stu);
-int				heat_map3(t_info *i_stu);
+int				label_nbr(t_info *i_stu, int r, int c);
 
 int				print_coor(t_info *i_stu);
-
-int				find_enemy(t_info *i_stu, char enemy, int x, int y);
 int				free_stuff(t_info *i_stu);
-
-int				check_dist(t_info *i_stu, int row, int col);
 
 #endif

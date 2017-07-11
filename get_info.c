@@ -12,7 +12,6 @@
 
 #include "includes/filler.h"
 
-
 int	get_plr(char *buf, t_info *i_stu)
 {
 	if (buf[10] == '1')
@@ -44,24 +43,18 @@ int	save_map_to_struc(char *buf, t_info *i_stu)
 	int	i;
 
 	i = 0;
-	i_stu->map = malloc(i_stu->map_row * sizeof(char*));
+	if (!(i_stu->map = malloc(i_stu->map_row * sizeof(char*))))
+		return (0);
 	while (i < i_stu->map_row)
 	{
 		get_next_line(0, &buf);
-		i_stu->map[i] = malloc(i_stu->map_col * sizeof(char) + 1);
+		if (!(i_stu->map[i] = malloc(i_stu->map_col * sizeof(char) + 1)))
+			return (0);
 		ft_strcpy(i_stu->map[i], buf + 4);
 		i_stu->map[i][i_stu->map_col] = '\0';
 		ft_strtoupper(i_stu->map[i]);
 		i++;
 	}
-/*
-	i = 0;
-	while (i < i_stu->map_row) //prints map row by row
-	{
-		dprintf(2, "||%s||\n", i_stu->map[i]);
-		i++;
-	}
-*/
 	return (0);
 }
 
@@ -75,24 +68,18 @@ int	get_piece_info(char *buf, t_info *i_stu)
 	i_stu->xy.p_row = ft_atoi(info[1]);
 	i_stu->xy.p_col = ft_atoi(info[2]);
 	free(info);
-	i_stu->piece = malloc(i_stu->xy.p_row * sizeof(char*));
+	if (!(i_stu->piece = malloc(i_stu->xy.p_row * sizeof(char*))))
+		return (0);
 	while (i < i_stu->xy.p_row)
 	{
 		get_next_line(0, &buf);
-		i_stu->piece[i] = malloc(i_stu->xy.p_col * sizeof(char) + 1);
+		if (!(i_stu->piece[i] = malloc(i_stu->xy.p_col * sizeof(char) + 1)))
+			return (0);
 		ft_strcpy(i_stu->piece[i], buf);
 		i_stu->piece[i][i_stu->xy.p_col] = '\0';
 		i++;
 	}
-
-	i = 0;
-	while (i < i_stu->xy.p_row) //prints piece row by row
-	{
-		dprintf(2, "%s\n", i_stu->piece[i]);
-		i++;
-	}
-
 	shift_all(i_stu->piece, i_stu);
-	plr_o(i_stu);
+	loop_map(i_stu);
 	return (0);
 }

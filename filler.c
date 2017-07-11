@@ -17,7 +17,7 @@ int	main(void)
 	t_info	i_stu;
 	char	*buf;
 
-	ft_memset(&i_stu, -1, sizeof(i_stu));
+	ft_memset(&i_stu, 0, sizeof(i_stu));
 	while (get_next_line(0, &buf) > 0)
 	{
 		if (ft_strnequ(buf, "$", 1))
@@ -32,10 +32,9 @@ int	main(void)
 			heat_map(&i_stu);
 			get_piece_info(buf, &i_stu);
 			print_coor(&i_stu);
-			free_stuff(&i_stu);
 		}
 		else
-			return (0);
+			return (1);
 	}
 	return (0);
 }

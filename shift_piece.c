@@ -132,6 +132,5 @@ char	**get_piece_size(char **piece, t_info *i_stu)
 	}
 	i_stu->xy.p_x = i_stu->xy.p_x + 1;
 	i_stu->xy.p_y = i_stu->xy.p_y + 1;
-	//dprintf(2, "\nactual piece size %d %d\n\n", i_stu->xy.p_x, i_stu->xy.p_y);
 	return (piece);
 }

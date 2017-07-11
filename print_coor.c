@@ -14,19 +14,9 @@
 
 int	print_coor(t_info *i_stu)
 {
-	//char	*string;
-
-	dprintf(2, "I GOT %d %d\n", i_stu->final_row, i_stu->final_col);
 	ft_printf("%d %d\n", i_stu->final_row, i_stu->final_col);
 	i_stu->final_row = -10;
 	i_stu->final_col = -10;
-	/*
-	string = ft_itoa(i_stu->final_row);
-	write(1, string, ft_strlen(string));
-	write(1, " ", 1);
-	string = ft_itoa(i_stu->final_col);
-	write(1, string, ft_strlen(string));
-	write(1, "\n", 1);
-	*/
+	free_stuff(i_stu);
 	return (0);
 }

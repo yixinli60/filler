@@ -18,7 +18,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 
-typedef struct s_coor
+typedef struct	s_coor
 {
 	int	p_row;
 	int	p_col;
@@ -40,7 +40,7 @@ typedef struct	s_info
 	int		final_col;
 	int		sum;
 	int		big;
-	t_coor xy;
+	t_coor	xy;
 }				t_info;
 
 int				get_plr(char *buf, t_info *i_stu);
